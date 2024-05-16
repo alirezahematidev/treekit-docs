@@ -2,32 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "inter-regular";
+  src: url("/fonts/Inter-Regular.ttf") format("woff");
+  font-weight: 400;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: "inter-medium";
+  src: url("/fonts/Inter-Medium.ttf") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+
+html {
+  @apply w-full h-full;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-[#1f1f1f] flex flex-row w-full h-full;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.loading {
+  animation: spin 0.6s infinite linear;
+  @apply border-4 rounded-full w-8 h-8 border-l-[#1f1f1f] border-r-[#1f1f1f] border-b-[#1f1f1f] border-t-[#10cc81];
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
   }
 }

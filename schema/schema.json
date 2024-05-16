@@ -1,0 +1,64 @@
+[
+  {
+    "title": "Guide",
+    "slug": "guide",
+    "children": [
+      {
+        "title": "Getting Started",
+        "slug": "getting-started"
+      },
+      {
+        "title": "Usage",
+        "slug": "usage"
+      }
+    ]
+  },
+  {
+    "title": "Functions",
+    "slug": "functions",
+    "children": [
+      {
+        "title": "insert",
+        "slug": "insert"
+      },
+      {
+        "title": "remove",
+        "slug": "remove"
+      },
+      {
+        "title": "move",
+        "slug": "move"
+      },
+      {
+        "title": "replace",
+        "slug": "replace"
+      },
+      {
+        "title": "swap",
+        "slug": "swap"
+      }
+    ]
+  },
+  {
+    "title": "Utilities",
+    "slug": "utilities",
+    "children": [
+      {
+        "title": "buildTree",
+        "slug": "build-tree"
+      },
+      {
+        "title": "flattenTree",
+        "slug": "flatten-tree"
+      },
+      {
+        "title": "filterTree",
+        "slug": "filter-tree"
+      },
+      {
+        "title": "mergeTrees",
+        "slug": "merge-trees"
+      }
+    ]
+  }
+]
