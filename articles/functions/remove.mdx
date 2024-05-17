@@ -1,12 +1,131 @@
-# my name is remove function
+import Alert from '@/components/alert'
 
+# remove
+
+The <code className='code-inline'>remove</code> method allows us to remove a node from our tree data structure. We must specify the node identifier to indicate which node should be removed. Finally, this method returns the updated data.
+
+The remove method is accessible in two ways, which can be used as follows:
 
 ```ts
 import Tree from "@treekit/core";
 
 const data = [
-  // your tree data
+  {
+    id: "1",
+    name: "node 1",
+    children: [
+      {
+        id: "2",
+        name: "node 2",
+        children: []
+      }
+    ]
+  }
 ];
 
-const {insert, move, ...} = new Tree(data);
+
+const { remove } = new Tree(data);
+
+// or
+
+import { remove } from "@treekit/core/functions";
+
+remove(data, /* rest of arguments */)
+
 ```
+
+now consider a node id to remove.<br />
+if the remove function is imported directly from <code className="code-inline">@treekit/core/functions</code>, we must pass the data as the first argument.
+
+```ts
+import { remove } from "@treekit/core/functions";
+
+
+const updatedTree = remove(data, "2");
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [],
+//   },
+// ]
+```
+or destructure the remove function from <code className="code-inline">Tree</code> class:
+
+```ts
+import Tree from "@treekit/core";
+
+const { remove } = new Tree(data);
+
+
+const updatedTree = remove("2");
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [],
+//   },
+// ]
+```
+
+
+<Alert message="If the node specified is not found within the data, this method throws an error. To prevent our program from crashing,
+                we can use the paired method called safeRemove. This method allows us to avoid any program errors. For example,
+                if the node is not found within the data, this method simply returns the original data." type="warn" />
+
+
+```ts
+import { remove, safeRemove } from "@treekit/core/functions";
+
+
+remove(data, "10");
+
+// ❌ throws error
+
+const updatedTree = safeRemove(data, "10");
+
+// ✅ just returns the original data
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id: "2",
+//         name: "node 2",
+//         children: []
+//       }
+//     ]
+//   }
+// ];
+
+```
+
+
+We can also use the callback version of those method:
+
+```ts
+void remove(data, "1", (updatedTree) => {
+
+// do your stuff
+
+})
+```
+
+In the callback version of <code className='code-inline'>safeRemove</code>, we can also get the occured error: 
+
+```ts
+void safeRemove(data, "1", (updatedTree, error) => {
+
+if(error) {
+  // print the error
+}
+
+// do your stuff
+
+})
+```
+

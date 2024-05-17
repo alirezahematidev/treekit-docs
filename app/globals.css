@@ -17,16 +17,26 @@
 }
 
 html {
-  @apply w-full h-full;
+  @apply w-full;
 }
 
 body {
-  @apply bg-[#1f1f1f] flex flex-row w-full h-full;
+  @apply bg-[#1f1f1f] w-full flex;
 }
 
 .loading {
   animation: spin 0.6s infinite linear;
   @apply border-4 rounded-full w-8 h-8 border-l-[#1f1f1f] border-r-[#1f1f1f] border-b-[#1f1f1f] border-t-[#10cc81];
+}
+
+.code-inline {
+  @apply bg-[#1f1f1f] py-[2px] px-1 rounded;
+  &::before {
+    @apply hidden;
+  }
+  &::after {
+    @apply hidden;
+  }
 }
 
 @keyframes spin {

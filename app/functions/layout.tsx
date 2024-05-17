@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="flex flex-col w-full h-full bg-[#141414]">
+    <main className="flex flex-col w-full h-full bg-[#141414] px-[300px]">
       <header>
         <Header />
       </header>
-      <article className="flex flex-col flex-1 w-full max-w-none prose dark:prose-invert p-8">{children}</article>
+      {children}
       <footer>
         <Footer />
       </footer>

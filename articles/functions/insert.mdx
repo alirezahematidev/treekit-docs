@@ -1,12 +1,146 @@
-# my name is insert function
+import Alert from '@/components/alert'
 
+# insert
+
+The <code className='code-inline'>insert</code> method allows us to insert one or more nodes to our tree data structure. We can specify the destination identifier to indicate where these nodes should be inserted. If the destination identifier is set to null, the nodes will be inserted to the first level of the tree structure. Finally, this method returns the updated data.
+
+The insert method is accessible in two ways, which can be used as follows:
 
 ```ts
 import Tree from "@treekit/core";
 
 const data = [
-  // your tree data
+  {
+    id: "1",
+    name: "node 1",
+    children: []
+  }
 ];
 
-const {insert, move, ...} = new Tree(data);
+const { insert } = new Tree(data);
+
+// or
+
+import { insert } from "@treekit/core/functions";
+
+insert(data, /* rest of arguments */)
+
 ```
+
+now consider a new node to insert.<br />
+if the insert function is imported directly from <code className="code-inline">@treekit/core/functions</code>, we must pass the data as the first argument.
+
+```ts
+import { insert } from "@treekit/core/functions";
+
+const node = {
+  id: "2",
+  name: "node 2",
+  children: []
+}
+
+const updatedTree = insert(data, "1", node);
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id:"2",
+//         name:"node 2",
+//         children: []
+//       }
+//     ],
+//   },
+// ]
+```
+or destructure the insert function from <code className="code-inline">Tree</code> class:
+
+```ts
+import Tree from "@treekit/core";
+
+const { insert } = new Tree(data);
+
+const node = {
+  id: "2",
+  name: "node 2",
+  children: []
+}
+
+const updatedTree = insert("1", node);
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id:"2",
+//         name:"node 2",
+//         children: []
+//       }
+//     ],
+//   },
+// ]
+```
+
+
+<Alert message="If the destination specified is not found within the data, this method throws an error. To prevent our program from crashing,
+                we can use the paired method called safeInsert. This method allows us to avoid any program errors. For example,
+                if the destination is not found within the data, this method simply returns the original data." type="warn" />
+
+
+```ts
+import { insert, safeInsert } from "@treekit/core/functions";
+
+const node = {
+  id: "2",
+  name: "node 2",
+  children: []
+}
+
+
+insert(data, "10", node);
+
+// ❌ throws error
+
+const updatedTree = safeInsert(data, "10", node);
+
+// ✅ just returns the original data
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [],
+//   },
+// ]
+
+```
+
+
+We can also use the callback version of those method:
+
+```ts
+void insert(data, "1", node, (updatedTree) => {
+
+// do your stuff
+
+})
+```
+
+In the callback version of <code className='code-inline'>safeInsert</code>, we can also get the occured error: 
+
+```ts
+void safeInsert(data, "1", node, (updatedTree, error) => {
+
+if(error) {
+  // print the error
+}
+
+// do your stuff
+
+})
+```
+

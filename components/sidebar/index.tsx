@@ -3,7 +3,7 @@ import schema from "@/schema/schema.json";
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col min-w-[250px] w-full h-full px-4 border-r border-[#292929]">
+    <div className="flex flex-col w-[300px]  h-full px-4 border-r border-[#292929] bg-[#1f1f1f] fixed z-50 top-0 left-0">
       <div className="w-full border-b border-[#292929] min-h-[50px] flex flex-row items-center">
         <h2 className="text-white capitalize font-bold">🌳 Treekit</h2>
       </div>

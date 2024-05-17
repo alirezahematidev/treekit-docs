@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Sidebar from "@/components/sidebar";
-import "./globals.css";
 import { InterLocal } from "@/font/local";
+import Sidebar from "@/components/sidebar";
+import Details from "@/components/details";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Treekit",
@@ -14,10 +15,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={InterLocal.className}>
-        <aside>
-          <Sidebar />
-        </aside>
-        {children}
+        <main className="flex flex-row w-full min-h-screen">
+          <aside>
+            <Sidebar />
+          </aside>
+          {children}
+          <aside>
+            <Details />
+          </aside>
+        </main>
       </body>
     </html>
   );

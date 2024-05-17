@@ -20,5 +20,9 @@ export default async function Page({ params: { slug } }: PageProps) {
 
   const Component = await lazyImport("functions", slug);
 
-  return <Component />;
+  return (
+    <article className="flex flex-col flex-1 w-full max-w-none font-inter-regular text-[14px] prose dark:prose-invert p-8 pl-[150px]">
+      <Component />
+    </article>
+  );
 }
