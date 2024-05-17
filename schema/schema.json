@@ -18,6 +18,10 @@
     "slug": "functions",
     "children": [
       {
+        "title": "find",
+        "slug": "find"
+      },
+      {
         "title": "insert",
         "slug": "insert"
       },
@@ -43,6 +47,14 @@
     "title": "Utilities",
     "slug": "utilities",
     "children": [
+      {
+        "title": "size",
+        "slug": "size"
+      },
+      {
+        "title": "getPath",
+        "slug": "get-path"
+      },
       {
         "title": "buildTree",
         "slug": "build-tree"

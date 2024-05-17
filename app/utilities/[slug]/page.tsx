@@ -18,7 +18,7 @@ export async function generateMetadata({ params: { slug } }: PageProps): Promise
 export default async function Page({ params: { slug } }: PageProps) {
   if (!slug) notFound();
 
-  const Component = await lazyImport("functions", slug);
+  const Component = await lazyImport("utilities", slug);
 
   return <Component />;
 }
