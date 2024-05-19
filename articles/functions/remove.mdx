@@ -30,7 +30,7 @@ const { remove } = new Tree(data);
 
 import { remove } from "@treekit/core/functions";
 
-remove(data, /* rest of arguments */)
+remove(data, ... /* rest of arguments */)
 
 ```
 
@@ -71,7 +71,7 @@ const updatedTree = remove("2");
 ```
 
 
-<Alert message="If the node specified is not found within the data, this method throws an error. To prevent our program from crashing,
+<Alert message="If the specified node is not found within the data, this method throws an error. To prevent our program from crashing,
                 we can use the paired method called safeRemove. This method allows us to avoid any program errors. For example,
                 if the node is not found within the data, this method simply returns the original data." type="warn" />
 

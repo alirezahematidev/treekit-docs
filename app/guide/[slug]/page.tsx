@@ -11,14 +11,14 @@ interface PageProps {
 export async function generateMetadata({ params: { slug } }: PageProps): Promise<Metadata> {
   return {
     title: `Treekit | ${slug}`,
-    description: `Treekit - ${slug} utility`,
+    description: `Treekit - ${slug}`,
   };
 }
 
 export default async function Page({ params: { slug } }: PageProps) {
   if (!slug) notFound();
 
-  const Component = await lazyImport("utilities", slug);
+  const Component = await lazyImport("guide", slug);
 
   return (
     <article className="flex flex-col flex-1 w-full max-w-none font-inter-regular text-[14px] prose dark:prose-invert p-8 pl-[150px]">

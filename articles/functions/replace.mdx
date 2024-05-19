@@ -1,12 +1,184 @@
-# my name is replace function
+import Alert from '@/components/alert'
 
+# replace
+
+The <code className='code-inline'>replace</code> method allows us to replace a existing node with a new node in our tree data structure. We must specify the target node identifier to indicate which node should be replaced by the replacer node. Finally, this method returns the updated data.
+
+The replace method is accessible in two ways, which can be used as follows:
 
 ```ts
 import Tree from "@treekit/core";
 
 const data = [
-  // your tree data
+  {
+    id: "1",
+    name: "node 1",
+    children: [
+      {
+        id: "3",
+        name: "node 3",
+        children: []
+      }
+    ]
+  },
+  {
+    id: "2",
+    name: "node 2",
+    children: []
+  }
 ];
 
-const {insert, move, ...} = new Tree(data);
+
+const { replace } = new Tree(data);
+
+// or
+
+import { replace } from "@treekit/core/functions";
+
+replace(data, ... /* rest of arguments */)
+
 ```
+
+now consider the target and replacer nodes.<br />
+if the replace function is imported directly from <code className="code-inline">@treekit/core/functions</code>, we must pass the data as the first argument.
+
+```ts
+import { replace } from "@treekit/core/functions";
+
+
+const node = {
+  id: "4",
+  name: "node 4",
+  children: []
+}
+
+
+const updatedTree = replace(data, "3", node);
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id: "4",
+//         name: "node 4",
+//         children: []
+//       }
+//     ]
+//   },
+//   {
+//     id: "2",
+//     name: "node 2",
+//     children: []
+//   }
+// ]
+```
+or destructure the replace function from <code className="code-inline">Tree</code> class:
+
+```ts
+import Tree from "@treekit/core";
+
+const { replace } = new Tree(data);
+
+
+const node = {
+  id: "4",
+  name: "node 4",
+  children: []
+}
+
+
+const updatedTree = replace("3", node);
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id: "4",
+//         name: "node 4",
+//         children: []
+//       }
+//     ]
+//   },
+//   {
+//     id: "2",
+//     name: "node 2",
+//     children: []
+//   }
+// ]
+```
+
+
+<Alert message="If the specified target node is not found within the data, this method throws an error. To prevent our program from crashing,
+                we can use the paired method called safeReplace. This method allows us to avoid any program errors. For example,
+                if the node is not found within the data, this method simply returns the original data." type="warn" />
+
+
+```ts
+import { replace, safeReplace } from "@treekit/core/functions";
+
+
+const node = {
+  id: "4",
+  name: "node 4",
+  children: []
+}
+
+
+replace(data, "10", node);
+
+// ❌ throws error
+
+const updatedTree = safeReplace(data, "10", node);
+
+// ✅ just returns the original data
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id: "3",
+//         name: "node 3",
+//         children: []
+//       }
+//     ]
+//   },
+//   {
+//     id: "2",
+//     name: "node 2",
+//     children: []
+//   }
+// ]
+
+```
+
+
+We can also use the callback version of those method:
+
+```ts
+void replace(data, "3", node, (updatedTree) => {
+
+// do your stuff
+
+})
+```
+
+In the callback version of <code className='code-inline'>safeReplace</code>, we can also get the occured error: 
+
+```ts
+void safeReplace(data, "3", node, (updatedTree, error) => {
+
+if(error) {
+  // print the error
+}
+
+// do your stuff
+
+})
+```
+

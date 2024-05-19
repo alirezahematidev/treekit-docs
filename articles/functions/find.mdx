@@ -1,12 +1,76 @@
-# my name is find function
+import Alert from '@/components/alert'
+
+# find
+
+The <code className='code-inline'>find</code> method allows us to find the specific node from our tree data structure. We can specify the node identifier to indicate which node should be found. Finally, this method returns the node if found otherwise returns undefined.
 
 
 ```ts
 import Tree from "@treekit/core";
 
+
 const data = [
-  // your tree data
+  {
+    id: "1",
+    name: "node 1",
+    children: [
+      {
+        id: "2",
+        name: "node 2",
+        children: []
+      }
+    ]
+  }
 ];
 
-const {insert, move, ...} = new Tree(data);
+
+const { find } = new Tree(data);
+
+// or
+
+import { find } from "@treekit/core/functions";
+
+find(data, ... /* rest of arguments */)
+
+```
+
+now consider a node to found.<br />
+if the find function is imported directly from <code className="code-inline">@treekit/core/functions</code>, we must pass the data as the first argument.
+
+```ts
+import { find } from "@treekit/core/functions";
+
+
+const foundNode = find(data, "2");
+
+// {
+//   id: "2",
+//   name: "node 2",
+//   children: []
+// }
+
+const foundNode = find(data, "10");
+
+// undefined
+```
+or destructure the find function from <code className="code-inline">Tree</code> class:
+
+```ts
+import Tree from "@treekit/core";
+
+const { find } = new Tree(data);
+
+
+const foundNode = find(data, "2");
+
+// {
+//   id: "2",
+//   name: "node 2",
+//   children: []
+// }
+
+
+const foundNode = find(data, "10");
+
+// undefined
 ```

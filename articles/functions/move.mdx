@@ -1,12 +1,163 @@
-# my name is move function
+import Alert from '@/components/alert'
 
+# move
+
+The <code className='code-inline'>move</code> method allows us to move a node to another node in our tree data structure. We must specify the source and target node identifiers to indicate which node should be moved to where. Finally, this method returns the updated data.
+
+The move method is accessible in two ways, which can be used as follows:
 
 ```ts
 import Tree from "@treekit/core";
 
 const data = [
-  // your tree data
+  {
+    id: "1",
+    name: "node 1",
+    children: [
+      {
+        id: "3",
+        name: "node 3",
+        children: []
+      }
+    ]
+  },
+  {
+    id: "2",
+    name: "node 2",
+    children: []
+  }
 ];
 
-const {insert, move, ...} = new Tree(data);
+
+const { move } = new Tree(data);
+
+// or
+
+import { move } from "@treekit/core/functions";
+
+move(data, ... /* rest of arguments */)
+
 ```
+
+now consider the source and target nodes.<br />
+if the move function is imported directly from <code className="code-inline">@treekit/core/functions</code>, we must pass the data as the first argument.
+
+```ts
+import { move } from "@treekit/core/functions";
+
+
+const updatedTree = move(data, "3", "2");
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: []
+//   },
+//   {
+//     id: "2",
+//     name: "node 2",
+//     children: [
+//       {
+//         id: "3",
+//         name: "node 3",
+//         children: []
+//       }
+//     ]
+//   }
+// ]
+```
+or destructure the move function from <code className="code-inline">Tree</code> class:
+
+```ts
+import Tree from "@treekit/core";
+
+const { move } = new Tree(data);
+
+
+const updatedTree = move("3", "2");
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: []
+//   },
+//   {
+//     id: "2",
+//     name: "node 2",
+//     children: [
+//       {
+//         id: "3",
+//         name: "node 3",
+//         children: []
+//       }
+//     ]
+//   }
+// ]
+```
+
+
+<Alert message="If the specified source node is not found within the data or the target is descendants of the source node, this method throws an error. To prevent our program from crashing,
+                we can use the paired method called safeMove. This method allows us to avoid any program errors. For example,
+                if the node is not found within the data, this method simply returns the original data." type="warn" />
+
+
+```ts
+import { move, safeMove } from "@treekit/core/functions";
+
+
+move(data, "10", "2");
+
+// ❌ throws error
+
+const updatedTree = safeMove(data, "10", "2");
+
+// ✅ just returns the original data
+
+// [
+//   {
+//     id: "1",
+//     name: "node 1",
+//     children: [
+//       {
+//         id: "3",
+//         name: "node 3",
+//         children: []
+//       }
+//     ]
+//   },
+//   {
+//     id: "2",
+//     name: "node 2",
+//     children: []
+//   }
+// ]
+
+```
+
+
+We can also use the callback version of those method:
+
+```ts
+void move(data, "3", "2", (updatedTree) => {
+
+// do your stuff
+
+})
+```
+
+In the callback version of <code className='code-inline'>safeMove</code>, we can also get the occured error: 
+
+```ts
+void safeMove(data, "3", "2", (updatedTree, error) => {
+
+if(error) {
+  // print the error
+}
+
+// do your stuff
+
+})
+```
+

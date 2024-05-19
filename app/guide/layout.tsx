@@ -3,8 +3,8 @@ import Header from "@/components/header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Treekit | utilities",
-  description: "Treekit utilities",
+  title: "Treekit | functions",
+  description: "Treekit funcitons",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

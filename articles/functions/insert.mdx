@@ -23,7 +23,7 @@ const { insert } = new Tree(data);
 
 import { insert } from "@treekit/core/functions";
 
-insert(data, /* rest of arguments */)
+insert(data, ... /* rest of arguments */)
 
 ```
 
@@ -86,7 +86,7 @@ const updatedTree = insert("1", node);
 ```
 
 
-<Alert message="If the destination specified is not found within the data, this method throws an error. To prevent our program from crashing,
+<Alert message="If the specified destination is not found within the data, this method throws an error. To prevent our program from crashing,
                 we can use the paired method called safeInsert. This method allows us to avoid any program errors. For example,
                 if the destination is not found within the data, this method simply returns the original data." type="warn" />
 
